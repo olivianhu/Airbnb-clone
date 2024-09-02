@@ -2,6 +2,7 @@ import axios from "axios";
 import { useContext, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { UserContext } from "../UserContext";
+import { motion as m } from "framer-motion";
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -24,8 +25,12 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="mt-4 grow flex items-center justify-around">
-      <div className="mb-64">
+    <m.div 
+      initial={{opacity: 0}} 
+      animate={{opacity: 1}} 
+      transition={{duration: 0.75, ease: 'easeOut'}}
+      className="mt-40 grow flex items-center justify-around">
+      <div className="">
         <h1 className="text-4xl text-center mb-4">Login</h1>
         <form className="max-w-md mx-auto" onSubmit={handleLoginSubmit}>
           <input type="email" 
@@ -42,6 +47,6 @@ export default function LoginPage() {
           </div>
         </form>
       </div>
-    </div>
+    </m.div>
   )
 }

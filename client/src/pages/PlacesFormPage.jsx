@@ -4,6 +4,7 @@ import { Navigate, useParams } from "react-router-dom";
 import AccountNav from "../layout-components/AccountNav";
 import Perks from "../components/Perks";
 import PhotosUploader from "../components/PhotosUploader";
+import { motion as m } from "framer-motion";
 
 export default function PlacesFormPage() {
   const {id} = useParams();
@@ -18,6 +19,7 @@ export default function PlacesFormPage() {
   const [maxGuests, setMaxGuests] = useState(1);
   const [redirect, setRedirect] = useState(false);
   const [price, setPrice] = useState(100);
+
 
   useEffect(() => {
     if (!id) {
@@ -78,7 +80,10 @@ export default function PlacesFormPage() {
   }
 
   return(
-    <div>
+    <m.div 
+          initial={{opacity: 0}} 
+          animate={{opacity: 1}} 
+          transition={{duration: 0.75, ease: 'easeOut'}}>
       <AccountNav />
       <form onSubmit={savePlace}>
         {preInput('Title', 'Title for your place. Should be short and catchy.')}
@@ -130,6 +135,6 @@ export default function PlacesFormPage() {
           <button className="primary">Save and submit</button>
         </div>
       </form>
-    </div>
+    </m.div>
   )
 }

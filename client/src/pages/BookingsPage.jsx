@@ -4,6 +4,8 @@ import AccountNav from "../layout-components/AccountNav";
 import PlaceImg from "../components/PlaceImg";
 import { Link } from "react-router-dom";
 import BookingDates from "../components/BookingDates";
+import { motion as m } from "framer-motion";
+import { container, item } from "../animation";
 
 export default function BookingsPage() {
   const [bookings, setBookings] = useState([]);
@@ -13,10 +15,11 @@ export default function BookingsPage() {
     })
   }, [])
   return (
-    <div>
+    <m.div variants={container} initial="hidden" animate="show">
       <AccountNav />
       <div>
         {bookings?.length > 0 && bookings.map(booking => (
+          <m.div variants={item} initial="hidden" animate="show">
           <Link to={`/account/bookings/${booking._id}`} className="flex gap-4 border shadow-md max-h-32 my-4 rounded-2xl overflow-hidden items-center" key={booking._id}>
             <div className="w-48 flex bg-gray-300 mr-1">
               <PlaceImg place={booking.place} />
@@ -33,8 +36,9 @@ export default function BookingsPage() {
               <BookingDates booking={booking} className={'pt-2 text-sm'}/>
             </div>
           </Link>
+          </m.div>
         ))}
       </div>
-    </div>
+    </m.div>
   );
 }

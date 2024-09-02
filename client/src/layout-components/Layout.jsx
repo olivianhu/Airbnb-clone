@@ -1,14 +1,10 @@
 import { Outlet } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
-import { motion as m } from "framer-motion";
 
 export default function Layout() {
   return(
-    <m.div 
-      initial={{opacity: 0}} 
-      animate={{opacity: 1}} 
-      transition={{duration: 0.75}}
+    <div 
       className="flex flex-col min-h-screen justify-between">
       <div>
         <div className="py-4 px-8">
@@ -25,6 +21,6 @@ export default function Layout() {
           <Footer />
         </div>
       </div>
-    </m.div>
+    </div>
   )
 }

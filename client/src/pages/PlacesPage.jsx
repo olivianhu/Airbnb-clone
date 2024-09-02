@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AccountNav from "../layout-components/AccountNav";
 import PlaceImg from "../components/PlaceImg";
+import { motion as m } from "framer-motion";
+import {container, item} from "../animation";
 
 export default function PlacesPage() {
   const [places, setPlaces] = useState([]);
@@ -13,9 +15,15 @@ export default function PlacesPage() {
   })
 
   return(
-    <div>
+    <m.div variants={container} initial="hidden" animate="show">
       <AccountNav />
-      <div className="text-center">
+      <m.div variants={item} initial="hidden" animate="show" className="text-center">
+        <Link className="inline-flex gap-1 bg-primary text-white py-2 px-6 rounded-full" to={'/account/places/new'}>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6">
+            <path fillRule="evenodd" d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5 a.75.75 0 0 1 .75-.75Z" clipRule="evenodd" />
+          </svg>
+          Add new place
+        </Link>
         <div>
           {places.length > 0 && places.map(place => (
             <Link to={`/account/places/${place._id}`} className="text-left cursor-pointer max-h-28 flex gap-4 my-4 border shadow-md rounded-2xl overflow-hidden items-center" key={place._id}>
@@ -35,14 +43,8 @@ export default function PlacesPage() {
             </Link>
           ))}
         </div>
-        <Link className="mt-6 inline-flex gap-1 bg-primary text-white py-2 px-6 rounded-full" to={'/account/places/new'}>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6">
-            <path fillRule="evenodd" d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5 a.75.75 0 0 1 .75-.75Z" clipRule="evenodd" />
-          </svg>
-          Add new place
-        </Link>
-      </div>
-    </div>
+      </m.div>
+    </m.div>
   );
 }
 

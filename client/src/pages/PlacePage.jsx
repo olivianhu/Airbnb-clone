@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom"
 import AddressLink from "../components/AddressLink";
 import BookingWidget from "../components/BookingWidget";
 import PlaceGallery from "../components/PlaceGallery";
+import { motion as m } from "framer-motion";
 
 export default function PlacePage() {
   const {id} = useParams();
@@ -21,7 +22,11 @@ export default function PlacePage() {
   if (!place) return '';
 
   return (
-    <div className="-mx-8 px-8 pt-8">
+    <m.div
+      initial={{opacity: 0}} 
+      animate={{opacity: 1}} 
+      transition={{duration: 0.75, ease: 'easeOut'}}
+      className="-mx-8 px-8 pt-8">
       <h1 className="text-3xl">{place.title}</h1>
       <AddressLink>{place.address}</AddressLink>
       <PlaceGallery place={place}/>
@@ -90,6 +95,6 @@ export default function PlacePage() {
         <h2 className="font-semibold text-xl mt-8 mb-2">Additional information</h2>
         <span className="text-gray-600">{place.extraInfo}</span>
       </div>
-    </div>
+    </m.div>
   )
 }

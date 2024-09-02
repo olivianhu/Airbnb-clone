@@ -3,7 +3,9 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import AddressLink from "../components/AddressLink";
 import PlaceGallery from "../components/PlaceGallery";
-import BookingDates from "../components/BookingDates"
+import BookingDates from "../components/BookingDates";
+import { motion as m } from "framer-motion";
+
 
 export default function BookingPage() {
   const {id} = useParams();
@@ -24,7 +26,12 @@ export default function BookingPage() {
   }
 
   return(
-    <div className="mt-8">
+    <m.div
+      initial={{opacity: 0}} 
+      animate={{opacity: 1}} 
+      transition={{duration: 0.75, ease: 'easeOut'}}
+      className="mt-8"
+    >
       <h1 className="text-3xl">{booking.place.title}</h1>
       <AddressLink className={'my-2 block'}>{booking.place.address}</AddressLink>
       <div className="border border-gray-200 shadow-md py-4 px-6 my-6 rounded-2xl flex items-center justify-between">
@@ -41,6 +48,6 @@ export default function BookingPage() {
       <Link className="block mt-8 text-lg text-primary underline" to={'/place/'+booking.place._id}>
         Return to original listing
       </Link>
-    </div>
+    </m.div>
   );
 }

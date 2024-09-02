@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import axios from "axios";
+import { motion as m } from "framer-motion";
 
 export default function RegisterPage() {
   const [name, setName] = useState('');
@@ -28,8 +29,12 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="mt-4 grow flex items-center justify-around">
-      <div className="mb-64">
+    <m.div 
+      initial={{opacity: 0}} 
+      animate={{opacity: 1}} 
+      transition={{duration: 0.75, ease: 'easeOut'}}
+    className="mt-40 grow flex items-center justify-around">
+      <div className="">
         <h1 className="text-4xl text-center mb-4">Register</h1>
         <form className="max-w-md mx-auto" onSubmit={registerUser}>
           <input type="text" 
@@ -50,6 +55,6 @@ export default function RegisterPage() {
           </div>
         </form>
       </div>
-    </div>
+    </m.div>
   )
 }

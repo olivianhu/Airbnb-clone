@@ -4,6 +4,7 @@ import { Navigate, useParams } from "react-router-dom";
 import AccountNav from "../layout-components/AccountNav";
 import { UserContext } from "../UserContext"
 import PlacesPage from "./PlacesPage";
+import { motion as m } from "framer-motion";
 
 export default function ProfilePage() {
   const [redirect, setRedirect] = useState(null);
@@ -33,7 +34,10 @@ export default function ProfilePage() {
   }
 
   return (
-    <div>
+    <m.div 
+      initial={{opacity: 0}} 
+      animate={{opacity: 1}} 
+      transition={{duration: 0.75, ease: 'easeOut'}}>
       <AccountNav />
       {subpage === 'profile' && (
         <div className="text-center max-w-lg mx-auto">
@@ -44,6 +48,6 @@ export default function ProfilePage() {
       {subpage === 'places' && (
         <PlacesPage />
       )}
-    </div>
+    </m.div>
   )
 }
