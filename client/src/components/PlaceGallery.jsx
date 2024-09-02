@@ -14,9 +14,9 @@ export default function PlaceGallery({place}) {
               </svg>
             </button>
           </div>
-          <div className="grid gap-4 px-24 pt-16 mb-8">
+          <div className="flex flex-col items-center gap-4 px-24 pt-16 mb-8">
             {place?.photos?.length > 0 && place.photos.map(photo => (
-              <div key={photo.id} className="">
+              <div key={photo.id} className="w-4/5">
                 <img src={"http://localhost:4000/uploads/" + photo} alt="" />
               </div>
             ))}
@@ -29,10 +29,10 @@ export default function PlaceGallery({place}) {
   return(
     <div className="relative">
       <div className="grid gap-2 grid-cols-[2fr_1fr] rounded-2xl overflow-hidden">
-        <div>
+        <div className="flex">
           {place.photos?.[0] && (
             <div>
-              <img onClick={() => setShowAllPhotos(true)} className="cursor-pointer aspect-square object-cover" src={"http://localhost:4000/uploads/"+place.photos[0]} alt="" />
+              <img onClick={() => setShowAllPhotos(true)} className="cursor-pointer aspect-square object-cover w-full" src={"http://localhost:4000/uploads/"+place.photos[0]} alt="" />
             </div>
           )}
         </div>
