@@ -17,7 +17,7 @@ export default function PlaceGallery({place}) {
           <div className="flex flex-col items-center gap-4 px-24 pt-16 mb-8">
             {place?.photos?.length > 0 && place.photos.map(photo => (
               <div key={photo.id} className="w-4/5">
-                <img src={"http://localhost:4000/uploads/" + photo} alt="" />
+                <img className="object-cover w-full" src={"http://localhost:4000/uploads/" + photo} alt="" />
               </div>
             ))}
           </div>
